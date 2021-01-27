@@ -6,19 +6,12 @@ namespace EmployeePayrollService
 {
     class EmolyeePayroll
     {
-        public int EmployeeID { get; set; }
-        public string EmployeeName { get; set; }
+        public int EmpID { get; set; }
+        public string EmpName { get; set; }
+        public DateTime StartDate { get; set; }
+        public string Gender { get; set; }
         public long PhoneNumber { get; set; }
         public string Address { get; set; }
-        public string Department { get; set; }
-        public string Gender { get; set; }
-        public decimal BasicPay { get; set; }
-        public decimal Deductions { get; set; }
-        public decimal TaxablePay { get; set; }
-        public decimal Tax { get; set; }
-        public decimal NetPay { get; set; }
-        public DateTime StartDate { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
+        public int DeptID { get; set; }
     }
 }
