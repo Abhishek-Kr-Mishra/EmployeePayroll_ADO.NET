@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmployeePayrollService
 {
-    class EmolyeePayroll
+    public class EmployeePayroll
     {
         public int EmpID { get; set; }
         public string EmpName { get; set; }
