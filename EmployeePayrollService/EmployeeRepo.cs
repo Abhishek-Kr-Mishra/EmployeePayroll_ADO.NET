@@ -66,5 +66,42 @@ namespace EmployeePayrollService
                 this.sqlConnection.Close();
             }
         }
+        public void RetrieveEmployeesFromGivenDate(EmployeePayroll employeePayroll, DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("sp_RetrieveEmployeesFromAParticularDate", sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@StartDate", startDate);
+                command.Parameters.AddWithValue("@EndDate", endDate);
+                sqlConnection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        employeePayroll.EmpID = reader.GetInt32(0);
+                        employeePayroll.EmpName = reader.GetString(1);
+                        employeePayroll.StartDate = reader.GetDateTime(2);
+                        Console.WriteLine("{0}, {1}, {2} ", employeePayroll.EmpID, employeePayroll.EmpName, employeePayroll.StartDate);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No Data Found");
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                this.sqlConnection.Close();
+            }
+
+        }
+
     }
 }
