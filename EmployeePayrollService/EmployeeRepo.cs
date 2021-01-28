@@ -102,6 +102,129 @@ namespace EmployeePayrollService
             }
 
         }
-
+        public void GetTheSumOfNetPayByGender(PayrollDetailModel payroll, string gender)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("sp_SumOfEmployeeSalaryByGender", sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Gender", gender);
+                sqlConnection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        payroll.NetPay = reader.GetDecimal(0);
+                        Console.WriteLine("Sum of " + gender + " Employee's NetPay is {0} ", payroll.NetPay);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Nothing found");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                this.sqlConnection.Close();
+            }
+        }
+        public void GetTheAverageOfNetPayByGender(PayrollDetailModel payroll, string gender)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("sp_AVGOfEmployeeSalaryByGender", sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Gender", gender);
+                sqlConnection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        payroll.NetPay = reader.GetDecimal(0);
+                        Console.WriteLine("Average of " + gender + " Employee's NetPay is {0} ", payroll.NetPay);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Nothing found");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                this.sqlConnection.Close();
+            }
+        }
+        public void GetTheMinimumValueOfNetPayByGender(PayrollDetailModel payroll, string gender)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("sp_MINOfEmployeeSalaryByGender", sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Gender", gender);
+                sqlConnection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        payroll.NetPay = reader.GetDecimal(0);
+                        Console.WriteLine("Minimin Netpay of " + gender + " Employee's NetPay is {0} ", payroll.NetPay);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Nothing found");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                this.sqlConnection.Close();
+            }
+        }
+        public void GetTheMaxmumValueOfNetPayByGender(PayrollDetailModel payroll, string gender)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("sp_MAXOfEmployeeSalaryByGender", sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Gender", gender);
+                sqlConnection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        payroll.NetPay = reader.GetDecimal(0);
+                        Console.WriteLine("Maximum Netpay of " + gender + " Employee's NetPay is {0} ", payroll.NetPay);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Nothing found");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                this.sqlConnection.Close();
+            }
+        }
     }
 }

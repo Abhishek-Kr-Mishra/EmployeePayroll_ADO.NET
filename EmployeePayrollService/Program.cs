@@ -16,6 +16,11 @@ namespace EmployeePayrollService
             DateTime startDate = new DateTime(2021, 01, 02);
             DateTime endDate = new DateTime(2021, 01, 27);
             employeeRepo.RetrieveEmployeesFromGivenDate(employeePayroll, startDate, endDate);
+
+            employeeRepo.GetTheMaxmumValueOfNetPayByGender(payroll, gender);
+            employeeRepo.GetTheAverageOfNetPayByGender(payroll, gender);
+            employeeRepo.GetTheMinimumValueOfNetPayByGender(payroll, gender);
+            employeeRepo.GetTheSumOfNetPayByGender(payroll, gender);
         }
     }
 }
