@@ -226,11 +226,11 @@ namespace EmployeePayrollService
                 this.sqlConnection.Close();
             }
         }
-        public bool AddEmployee(EmployeePayroll employeePayroll)
+        public bool AddEmployee(EmployeePayroll employeePayroll,PayrollDetailModel payroll)
         {
             try
             {
-                SqlCommand command = new SqlCommand("sp_AddEmployee", sqlConnection);
+                SqlCommand command = new SqlCommand("sp_AddEmployeeAndPayrollTogether", sqlConnection);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@EmpName", employeePayroll.EmpName);
                 command.Parameters.AddWithValue("@StartDate", employeePayroll.StartDate);
@@ -238,6 +238,11 @@ namespace EmployeePayrollService
                 command.Parameters.AddWithValue("@PhoneNumber", employeePayroll.PhoneNumber);
                 command.Parameters.AddWithValue("@Address", employeePayroll.Address);
                 command.Parameters.AddWithValue("@DeptID", employeePayroll.DeptID);
+                command.Parameters.AddWithValue("@BasicPay", payroll.BasicPay);
+                command.Parameters.AddWithValue("@Deduction", payroll.Deduction);
+                command.Parameters.AddWithValue("@TaxablePay", payroll.TaxablePay);
+                command.Parameters.AddWithValue("@IncomeTax", payroll.IncomeTax);
+                command.Parameters.AddWithValue("@NetPay", payroll.NetPay);
                 this.sqlConnection.Open();
                 var result = command.ExecuteNonQuery();
                 if (result != 0)
