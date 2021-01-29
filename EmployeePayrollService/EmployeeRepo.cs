@@ -260,5 +260,30 @@ namespace EmployeePayrollService
                 this.sqlConnection.Close();
             }
         }
+        public bool DeleteEmployeeAndPayroll(EmployeePayroll employeePayroll)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("sp_DeleteEmployeeDetails", sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@EmpID", employeePayroll.EmpID);
+                this.sqlConnection.Open();
+                var result = command.ExecuteNonQuery();
+                if (result != 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
     }
 }

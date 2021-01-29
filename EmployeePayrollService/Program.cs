@@ -13,19 +13,9 @@ namespace EmployeePayrollService
             PayrollDetailModel payroll = new PayrollDetailModel();
             //string gender = "Male";
 
-            employeePayroll.EmpName = "Mohan";
-            employeePayroll.StartDate = new DateTime(2021, 01, 28);
-            employeePayroll.Gender = "Male";
-            employeePayroll.PhoneNumber = 8927841235;
-            employeePayroll.Address = "SriNagar";
-            employeePayroll.DeptID = 3;
-            payroll.BasicPay = 360000;
-            payroll.Deduction = 24000;
-            payroll.TaxablePay = 6000;
-            payroll.IncomeTax = 12000;
-            payroll.NetPay = 26500;
+            employeePayroll.EmpID = 14;
 
-            employeeRepo.AddEmployee(employeePayroll, payroll);
+            employeeRepo.DeleteEmployeeAndPayroll(employeePayroll);
 
             //DateTime startDate = new DateTime(2021, 01, 02);
             //DateTime endDate = new DateTime(2021, 01, 27);
