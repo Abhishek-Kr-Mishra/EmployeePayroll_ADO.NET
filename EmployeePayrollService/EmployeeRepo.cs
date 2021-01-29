@@ -226,5 +226,34 @@ namespace EmployeePayrollService
                 this.sqlConnection.Close();
             }
         }
+        public bool AddEmployee(EmployeePayroll employeePayroll)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("sp_AddEmployee", sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@EmpName", employeePayroll.EmpName);
+                command.Parameters.AddWithValue("@StartDate", employeePayroll.StartDate);
+                command.Parameters.AddWithValue("@Gender", employeePayroll.Gender);
+                command.Parameters.AddWithValue("@PhoneNumber", employeePayroll.PhoneNumber);
+                command.Parameters.AddWithValue("@Address", employeePayroll.Address);
+                command.Parameters.AddWithValue("@DeptID", employeePayroll.DeptID);
+                this.sqlConnection.Open();
+                var result = command.ExecuteNonQuery();
+                if (result != 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                this.sqlConnection.Close();
+            }
+        }
     }
 }
